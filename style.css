@@ -1,0 +1,531 @@
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #1e1e1e;
+            color: #fff;
+            background: url('https://i.ibb.co/qFdn6fPV/huoshiyinyuebizhi2.jpg') no-repeat center center fixed;
+            background-size: cover; /* 确保背景图片覆盖整个页面 */
+            cursor: url('https://i.ibb.co/CVdBx9j/copy-34x34.png'), auto;
+        }
+
+        a, button, input, select, textarea, .music-button, label, #audio-controls button {
+            cursor: url('https://i.ibb.co/CVdBx9j/copy-34x34.png'), auto !important;
+        }
+
+        a:hover, a:focus, button:hover, button:focus, input:hover, input:focus, select:hover, select:focus, textarea:hover, textarea:focus, .music-button:hover, .music-button:focus, label:hover, label:focus, #audio-controls button:hover, #audio-controls button:focus {
+            cursor: url('https://i.ibb.co/CVdBx9j/copy-34x34.png'), auto !important;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.388); /* 黑灰色，70%透明 */
+            z-index: -1; /* 让叠加层位于内容下面 */
+        }
+
+
+        header {
+            background: rgba(0, 0, 0, 0.596); /* 半透明导航栏背景 */
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            position: sticky; /* 关键属性 */
+            top: 0; /* 距离页面顶部的位置 */
+            z-index: 1000; /* 确保在其他内容上方 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 添加滚动时的阴影效果 */
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.256); /* 滚动后加深背景颜色 */
+            box-shadow: 0 4px 8px rgba(22, 22, 22, 0.238); /* 滚动时阴影增强 */
+        }
+
+        header .menu,
+        header .search {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        header .menu button {
+            background: linear-gradient(145deg, #28282899, #333333a4);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.26); /* 内部阴影 */
+            padding: 10px 15px;
+            color: #f3f3f3;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        header .menu button:hover {
+            background: linear-gradient(145deg, #555555bb, #3737377d);
+            transform: scale(1.05);
+            color: #fffffff3; /* 鼠标悬停时文字颜色变白 */
+            box-shadow: 0 6px 20px rgba(235, 235, 235, 0.458); /* 加强阴影 */
+        }
+
+
+        header .search input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            outline: none;
+            color: #fff;
+            background: #141414aa;
+            font-size: 14px;
+        }
+
+
+        header .search button {
+            background: #1f1f1f8a;
+            border: 1px solid #d7d7d758; /* 添加科技感边框 */
+            padding: 10px 15px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        header .search button:hover {
+            background: #3e3e3e6a;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.127); /* 内部阴影 */
+        }
+
+        header .search .suggestions {
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        header .search .suggestions button {
+            background: #4747478a;
+            border: none;
+            padding: 8px 12px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+
+        header .search .suggestions button:hover {
+            background: #5555558c;
+        }
+
+        .content {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .video-card {
+            background: rgba(0, 0, 0, 0.532); /* 半透明视频卡片背景 */
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-card video {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+         /* pointer-events: none; */ /* 删除此行 */
+        }
+
+
+        .video-card video::-webkit-media-controls {
+            display: none !important;
+        }
+
+        .video-card .description {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .video-card .download {
+            background: linear-gradient(145deg, #028db7d8, #20adc2be);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-card .download:hover {
+            background: linear-gradient(145deg, #1eb2bd67, #1b81816a);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .video-card video {
+                max-width: 100%;
+            }
+        }
+
+        .video-card img {
+                max-width: 100%;
+                border-radius: 10px;
+        }
+
+        /* Modal CSS */
+        .modal {
+               display: none;
+               position: fixed;
+               z-index: 1000;
+               left: 0;
+               top: 0;
+               width: 100%;
+               height: 100%;
+               background-color: rgba(0, 0, 0, 0.8);
+               justify-content: center;
+               align-items: center;
+        }
+
+        .modal-content {
+               position: relative;
+               width: 90vw; /* 使用视口宽度的 90% */
+               height: 90vh; /* 使用视口高度的 90% */
+               max-width: 100%;
+               max-height: 100%;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+        }
+
+        .modal video, .modal img {
+               width: 100%; /* 确保内容占满 modal-content 宽度 */
+               height: 100%; /* 确保内容占满 modal-content 高度 */
+               border-radius: 10px;
+               object-fit: contain; /* 保持内容比例，适应宽高 */
+        }
+
+
+        .close {
+               position: absolute;
+               top: 10px;
+               right: 20px;
+               color: white;
+               font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001; /* 确保在最上层 */
+}
+
+
+        #modal-video::-webkit-media-controls {
+               display: none !important;
+        }
+
+        #modal-video::-moz-media-controls {
+               display: none !important;
+        }
+
+
+/* 初始隐藏状态 */
+       .hidden {
+            opacity: 0;
+            transform: translateY(7px); /* 下移 50px */
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+/* 显示状态 */
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 模态框背景 */
+        #unique-modal-overlay-id1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        /* 模态框主体 */
+        #unique-modal-id1 {
+            background-color: #000000dd;
+            width: 90%;
+            max-width: 700px;
+            height: 70%;
+            border-radius: 10px;
+            padding: 0;
+            display: flex;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 分类按钮（左侧菜单） */
+        .category-buttons1 {
+            background-color: #191919aa;
+            display: flex;
+            flex-direction: column;
+            width: 150px;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .category-buttons1 button {
+            background-color: #282828a5;
+            color: #bebebe;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease; /* 平滑过渡 */
+            transform-origin: center;
+            height: 40px;
+            width: 120px;
+        }
+
+        /* 悬停效果 */
+        .category-buttons1 button:hover {
+            background-color: #4747478c;
+            transform: scale(1.05); /* 放大 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 点击效果 */
+        .category-buttons1 button:active {
+            transform: scale(0.95); /* 点击时缩小 */
+        }
+
+        /* 激活状态 */
+        .category-buttons1 button.active {
+            background-color: #39393972;
+            color: #848484;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2); /* 内部阴影 */
+        }
+
+        /* 内容区域 */
+        .content-area1 {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            scrollbar-width: none; /* 隐藏 Firefox 的滚动条（仅美观，无实际效果） */
+        }
+
+        .content-area1 .content1 {
+            display: none;
+        }
+
+        .content-area1 .content1.active {
+            display: block;
+        }
+
+        /* 关闭按钮 */
+        #unique-close-button-id1 {
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* 打开模态框的按钮 */
+        #unique-question-button-id1 {
+            background-color: #00000092;
+            color: rgb(161, 161, 161);
+            border: 1px solid #d7d7d758; /* 添加科技感边框 */
+            border-radius: 30%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #unique-question-button-id1:hover {
+            box-shadow: 0 4px 15px rgba(103, 103, 103, 0.619);
+            background-color: #666;
+            transform: scale(1.1);
+        }
+
+        #unique-question-button-id1:active {
+            transform: scale(0.9);
+        }
+
+        .huojian01 {
+      position: fixed;
+      bottom: 50px;
+      right: 50px;
+      width: 50px;
+      height: 50px;
+      background-color: #000000b4;
+      color: rgba(68, 68, 68, 0.596);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.33);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      z-index: 1000;
+      user-select: none; /* 禁止文本选择 */
+      -webkit-user-drag: none; /* 禁止图片或元素拖动 */
+      -webkit-touch-callout: none; /* 禁止长按时弹出菜单 */
+      cursor: url('https://i.ibb.co/CVdBx9j/copy-34x34.png'), auto;
+    }
+
+    .huojian01 img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      pointer-events: none; /* 禁止图片响应事件 */
+      user-select: none; /* 禁止文本选择 */
+      -webkit-user-drag: none; /* 禁止图片拖动 */
+    }
+
+    .huojian01.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .huojian01:active {
+      transform: scale(0.9);
+    }
+
+
+        /* 弹窗背景 */
+        .huoshi002-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        /* 弹窗 */
+        .huoshi002-popup {
+            background-color: rgba(0, 0, 0, 0.589);
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .huoshi002-popup h2 {
+            margin-bottom: 20px;
+        }
+
+        .huoshi002-popup p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* 按钮 */
+        .huoshi002-popup button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #2a2a2a94;
+            color: rgba(255, 255, 255, 0.803);
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .huoshi002-popup button:disabled {
+            background-color: #474747c1;
+            color: rgba(165, 165, 165, 0.758);
+            cursor: not-allowed;
+        }
+
+        /* 勾选框容器 */
+        .huoshi002-checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .huoshi002-checkbox-container input {
+            margin-right: 10px;
+        }
+
+        .huoshi002-popup .huoshi002-enter-btn {
+            margin-top: 20px;
+        }
+
+        .AI01-button-container {
+            position: fixed;
+            z-index: 1000;
+        }
+        .AI01-draggable-btn {
+            background: #3434349c;
+            color: rgba(207, 207, 207, 0.734);
+            border-color: rgba(151, 151, 151, 0.886);
+
+            border-radius: 50px;    
+            cursor: pointer;
+        }
+        #AI01-iframe-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: rgba(0, 0, 0, 0.423);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 1001;
+        }
+        #AI01-iframe-container iframe {
+            width: 100%;
+            height: 90%;
+            border: none;
+        }
+        .AI01-close-btn {
+            background: rgba(0, 0, 0, 0.321);
+            color: rgb(200, 200, 200);
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
