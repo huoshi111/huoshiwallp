@@ -5,15 +5,15 @@
             color: #fff;
             background: url('https://i.ibb.co/qFdn6fPV/huoshiyinyuebizhi2.jpg') no-repeat center center fixed;
             background-size: cover; /* 确保背景图片覆盖整个页面 */
-            cursor: url('https://i.ibb.co/CVdBx9j/copy-34x34.png'), auto;
+            cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto;
         }
 
         a, button, input, select, textarea, .music-button, label, #audio-controls button {
-            cursor: url('https://i.ibb.co/CVdBx9j/copy-34x34.png'), auto !important;
+            cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
         }
 
         a:hover, a:focus, button:hover, button:focus, input:hover, input:focus, select:hover, select:focus, textarea:hover, textarea:focus, .music-button:hover, .music-button:focus, label:hover, label:focus, #audio-controls button:hover, #audio-controls button:focus {
-            cursor: url('https://i.ibb.co/CVdBx9j/copy-34x34.png'), auto !important;
+            cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
         }
 
         .overlay {
